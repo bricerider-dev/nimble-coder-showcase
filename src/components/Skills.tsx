@@ -1,38 +1,48 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code2, Database, Palette, Server, Smartphone, Zap } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 
 const skills = [
   {
-    icon: Code2,
-    title: "Frontend",
-    description: "React, TypeScript, Next.js, Tailwind CSS",
+    title: "React / Next.js",
+    level: 90,
+    category: "Frontend",
   },
   {
-    icon: Server,
-    title: "Backend",
-    description: "Node.js, Express, API REST, GraphQL",
+    title: "TypeScript",
+    level: 85,
+    category: "Frontend",
   },
   {
-    icon: Database,
-    title: "Base de données",
-    description: "PostgreSQL, MongoDB, Redis, Supabase",
+    title: "Tailwind CSS",
+    level: 95,
+    category: "Frontend",
   },
   {
-    icon: Smartphone,
-    title: "Responsive Design",
-    description: "Mobile-first, Progressive Web Apps",
+    title: "Node.js / Express",
+    level: 80,
+    category: "Backend",
   },
   {
-    icon: Palette,
-    title: "UI/UX Design",
-    description: "Figma, Design Systems, Animations",
+    title: "PostgreSQL / MongoDB",
+    level: 75,
+    category: "Backend",
   },
   {
-    icon: Zap,
-    title: "Performance",
-    description: "Optimisation, SEO, Web Vitals",
+    title: "API REST / GraphQL",
+    level: 85,
+    category: "Backend",
+  },
+  {
+    title: "Git / GitHub",
+    level: 90,
+    category: "Outils",
+  },
+  {
+    title: "Docker / CI/CD",
+    level: 70,
+    category: "DevOps",
   },
 ];
 
@@ -57,30 +67,25 @@ const Skills = () => {
           </p>
         </motion.div>
 
-        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {skills.map((skill, index) => {
-            const Icon = skill.icon;
-            return (
-              <motion.div
-                key={skill.title}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-all hover:shadow-glow"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-primary/10 rounded-lg">
-                    <Icon className="text-primary" size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-2">{skill.title}</h3>
-                    <p className="text-muted-foreground text-sm">{skill.description}</p>
-                  </div>
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {skills.map((skill, index) => (
+            <motion.div
+              key={skill.title}
+              initial={{ opacity: 0, x: -50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="space-y-3"
+            >
+              <div className="flex justify-between items-center">
+                <div>
+                  <h3 className="font-semibold text-lg">{skill.title}</h3>
+                  <p className="text-sm text-muted-foreground">{skill.category}</p>
                 </div>
-              </motion.div>
-            );
-          })}
+                <span className="text-primary font-bold text-lg">{skill.level}%</span>
+              </div>
+              <Progress value={skill.level} className="h-3" />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
