@@ -17,16 +17,26 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      // @ts-ignore - EmailJS is loaded via CDN
+      await window.emailjs.sendForm('service_lfjje1j', 'template_g9payrl', e.currentTarget);
+      
+      toast({
+        title: "Message envoyé !",
+        description: "Je vous répondrai dans les plus brefs délais.",
+      });
 
-    toast({
-      title: "Message envoyé !",
-      description: "Je vous répondrai dans les plus brefs délais.",
-    });
-
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+      (e.target as HTMLFormElement).reset();
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi du message:', error);
+      toast({
+        title: "Erreur d'envoi",
+        description: "Une erreur est survenue. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -116,6 +126,7 @@ const Contact = () => {
               <div>
                 <Input
                   type="text"
+                  name="from_name"
                   placeholder="Votre nom"
                   required
                   className="bg-card border-border focus:border-primary"
@@ -126,6 +137,7 @@ const Contact = () => {
               <div>
                 <Input
                   type="email"
+                  name="from_email"
                   placeholder="Votre email"
                   required
                   className="bg-card border-border focus:border-primary"
@@ -136,6 +148,7 @@ const Contact = () => {
               <div>
                 <Input
                   type="text"
+                  name="subject"
                   placeholder="Sujet"
                   required
                   className="bg-card border-border focus:border-primary"
@@ -145,6 +158,7 @@ const Contact = () => {
 
               <div>
                 <Textarea
+                  name="message"
                   placeholder="Votre message"
                   required
                   rows={6}
