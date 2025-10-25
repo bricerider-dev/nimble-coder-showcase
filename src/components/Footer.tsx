@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="flex flex-col items-center gap-6">
           <div className="flex gap-6">
             <a
-              href="https://github.com"
+              href="https://github.com/bricerider-dev"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -18,7 +18,7 @@ const Footer = () => {
               <Github size={24} />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/bricekenfack"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -27,7 +27,7 @@ const Footer = () => {
               <Linkedin size={24} />
             </a>
             <a
-              href="mailto:contact@example.com"
+              href="mailto:kenfackbrice27@gmail.com"
               className="text-muted-foreground hover:text-primary transition-colors"
               aria-label="Email Contact"
             >
@@ -37,7 +37,7 @@ const Footer = () => {
 
           <div className="text-center text-muted-foreground">
             <p className="flex items-center gap-2 flex-wrap justify-center">
-              © {currentYear} Portfolio. Fait avec <Heart size={16} className="text-primary" /> par un développeur passionné
+              © {currentYear} BRICE KENFACK. Fait avec <Heart size={16} className="text-primary" /> par un développeur full stack passionné
             </p>
           </div>
         </div>

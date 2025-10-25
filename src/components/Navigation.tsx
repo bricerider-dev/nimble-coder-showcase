@@ -45,7 +45,7 @@ const Navigation = () => {
             whileTap={{ scale: 0.95 }}
             className="text-xl md:text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent"
           >
-            Portfolio
+            BRC.
           </motion.button>
 
           {/* Desktop Navigation */}
